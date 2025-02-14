@@ -1,0 +1,20 @@
+# Ignore input directories (audio, videos) and generated output folders
+audio/
+videos/
+spliced_segments/
+
+*.mp4
+*.log
+*.txt
+
+
+# Ignore virtual environment directory
+yt-dlp_ffmpeg_env/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+.idea
+
+
