@@ -1,14 +1,19 @@
 import argparse
+
 from cmd.audio_mixing import mix_audio
 from cmd.audio_process import process_audio
 from cmd.compression import compress_video
+from cmd.filters.filter import apply_filters
 from cmd.split_splice import split_video, adjust_segment
 from cmd.sync import sync_video
-from cmd.filters.video_effects import apply_video_effects
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generic Video Editing Tool using FFmpeg")
+    # Global argument: by default audio is kept. Use --no-audio to remove audio.
+    parser.add_argument("--no-audio", action="store_true",
+                        help="Remove audio track from the output (default: keep audio)")
+
     subparsers = parser.add_subparsers(dest="command", required=True, help="Sub-commands")
 
     # audioprocess sub-command
@@ -50,7 +55,7 @@ def main() -> None:
                                 metavar="EFFECT_ITEM",
                                 help=("Effect item parameters. For a normal effect: start end filter_chain [speed]. "
                                       "For a blend effect: start end blend phase [crossfade_start crossfade_end]."))
-    effects_parser.set_defaults(func=apply_video_effects)
+    effects_parser.set_defaults(func=apply_filters)
 
     # split sub-command
     split_parser = subparsers.add_parser("split", help="Extract video segments into separate files")

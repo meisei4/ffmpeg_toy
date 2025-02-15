@@ -1,7 +1,5 @@
 import sys
 
-from utils.ffmpeg_utils import run_command
-
 
 def sync_video(args) -> None:
     """

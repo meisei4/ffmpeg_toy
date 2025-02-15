@@ -53,7 +53,7 @@ def calculate_bitrate_kbps(target_size_mb: int, duration: float, audio_bitrate_b
 
 
 def build_filter_string(resolution: Optional[str], denoise_strength: Optional[str], speed_factor: Optional[float]) -> \
-Optional[str]:
+        Optional[str]:
     """Construct a filter chain based on resolution, denoise and speed parameters."""
     filters: List[str] = []
     if resolution is not None:
