@@ -1,7 +1,7 @@
 # Ignore input directories (audio, videos) and generated output folders
-audio/
-videos/
-spliced_segments/
+test_files/audio/
+test_files/videos/
+test_files/spliced_segments/
 
 *.mp4
 *.log

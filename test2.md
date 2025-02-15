@@ -1,29 +1,34 @@
 ### TEST 2: Video Splice Segments
 
-This test demonstrates extracting multiple segments from a 32‑second video file. The goal is to capture key splices that you can later fine‑tune by adjusting their start and end times until you have the exact frames you want.
+This test demonstrates extracting multiple segments from a 32‑second video file. The goal is to capture key splices that
+you can later fine‑tune by adjusting their start and end times until you have the exact frames you want.
 
-**Segments Defined:**  
-- **Segment 1:** 4s to 7s  
-- **Segment 2:** 9s to 12s  
-- **Segment 3:** 14s to 16s  
-- **Segment 4:** 17s to 18s  
-- **Segment 5:** 19s to 20s  
-- **Segment 6:** 20s to 21s  
-- **Segment 7:** 22s to 27s  
-- **Segment 8:** 28s to 31s  
+**Segments Defined:**
+
+- **Segment 1:** 4s to 7s
+- **Segment 2:** 9s to 12s
+- **Segment 3:** 14s to 16s
+- **Segment 4:** 17s to 18s
+- **Segment 5:** 19s to 20s
+- **Segment 6:** 20s to 21s
+- **Segment 7:** 22s to 27s
+- **Segment 8:** 28s to 31s
 
 #### Step 1. Extract Initial Segments
 
 Use the new `split` sub-command to extract all the segments in one go. This command does the following:
+
 - Reads the input video.
 - For each `--segment` pair provided, extracts that time interval.
-- Saves each segment as an individual file (named `segment_1.mp4`, `segment_2.mp4`, etc.) in the specified output directory (here, `spliced_segments/`).
+- Saves each segment as an individual file (named `segment_1.mp4`, `segment_2.mp4`, etc.) in the specified output
+  directory (here, `spliced_segments/`).
 
 ```bash
 python ffmpeg_toy.py split videos/your_32s_video.mp4 spliced_segments/ --segment 4 7 --segment 9 12 --segment 14 16 --segment 17 18 --segment 19 20 --segment 20 21 --segment 22 27 --segment 28 31
 ```
 
-After running this command, check that the directory `spliced_segments/` contains files like `segment_1.mp4`, `segment_2.mp4`, etc.
+After running this command, check that the directory `spliced_segments/` contains files
+like `segment_1.mp4`, `segment_2.mp4`, etc.
 
 #### Step 2. Review and Fine-Tune Segments
 
@@ -34,7 +39,6 @@ mpv spliced_segments/segment_3.mp4
 ```
 
 #### Step 3. Adjust a Segment’s Boundaries
-
 
 ```bash
 python ffmpeg_toy.py adjust videos/IMG_1854.mp4 segment_2_adjusted.mp4 --orig-start 4 --orig-end 7 --start-offset 1.5
@@ -77,6 +81,7 @@ python ffmpeg_toy.py adjust videos/IMG_1854.mp4 segment_8_adjusted.mp4 --orig-st
 ```
 
 This command:
+
 - Takes the original video (`videos/IMG_1854.mp4`).
 - Knows that Segment 3 originally spans 14s to 16s.
 - Applies a start offset of -0.45 (adding 0.45 seconds before) and an end offset of +0.45 (adding 0.45 seconds after).
